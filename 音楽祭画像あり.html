@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下北沢音楽祭2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap');
+        
+        body {
+            font-family: 'Noto Sans JP', 'Montserrat', sans-serif;
+            background-color: #0b0b0c; /* フォールバック */
+            /* 全画面背景画像の設定 */
+            background-image: url('image_0.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* 背景を固定 */
+        }
+        
+        /* スクロールバーをシモキタ・オレンジに変更 */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #141416; }
+        ::-webkit-scrollbar-thumb { background: #ef7e37; border-radius: 4px; }
+
+        /* タイムテーブルの背景グリッド（1時間=60px幅） */
+        .tt-track {
+            position: relative;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent,
+                transparent 59px,
+                rgba(255, 255, 255, 0.02) 59px,
+                rgba(255, 255, 255, 0.02) 60px
+            );
+        }
+    </style>
+</head>
+<body class="text-gray-100 overflow-x-hidden">
+
+    <header class="min-h-[70vh] flex flex-col justify-center items-center text-center px-4 pt-16 relative">
+        <div class="absolute inset-0 bg-black/50 z-0"></div> <div class="relative z-10 max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-7xl font-black tracking-tighter text-white mb-2 leading-tight">
+                下北沢音楽祭 2026
+            </h1>
+            <p class="text-[clamp(0.72rem,4vw,1.875rem)] font-black text-orange-100 tracking-widest mb-6 whitespace-nowrap">
+                - <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ffde59] to-[#ef7e37]">SHIMOKITA CROSSROAD STAGE</span> -
+            </p>
+            <p class="text-sm md:text-xl text-neutral-300 font-bold tracking-wider mb-8">
+                2026.7.4 (SAT) - 7.5 (SUN)</br>＠ <a href="https://shimokita.college/">SHIMOKITA COLLAGE</a>
+            </p>
+
+    </div>
+    </header>
+
+    <main class="bg-black/60 relative z-10 pb-20 border-t border-neutral-900">
+
+        <!-- CONCEPT -->
+        <section id="concept" class="py-12 max-w-3xl mx-auto px-4">
+            <div class="mb-6 border-l-4 border-[#ef7e37] pl-4">
+                <h2 class="text-2xl md:text-3xl font-black tracking-wider text-white">CONCEPT</h2>
+                <p class="text-xs text-neutral-400 mt-0.5">コンセプト</p>
+            </div>
+            <div class="bg-neutral-950/60 border border-neutral-800 rounded-xl p-5 md:p-7 text-neutral-300 leading-relaxed">
+                <p class="text-base md:text-xl font-black text-white leading-relaxed">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ffde59] to-[#ef7e37]">“交差点”</span>をテーマに、音楽・アート・世代・地域を横断して人と表現が交わるステージ。
+                </p>
+                <p class="text-sm md:text-base mt-3">出演者と観客、音楽と他ジャンル芸術を<span class="text-[#ef7e37] font-bold">“クロス”</span>させる場です。</p>
+
+                <ul class="mt-6 space-y-4 text-sm md:text-base">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-star text-[#ef7e37] mt-1 shrink-0"></i>
+                        <span>例年よりも知名度の高いアーティストを招待し、集客を確保。</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-building text-[#ef7e37] mt-1 shrink-0"></i>
+                        <span>1階を音楽ステージ、2階をアーティストやカレッジ生による物販・イベントブースとして活用。</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-handshake-angle text-[#ef7e37] mt-1 shrink-0"></i>
+                        <span>地域の和太鼓クラブとのコラボや、カレッジ生内のアーティストと音楽家のコラボも開催。</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="timetable" class="py-12 bg-neutral-900 border-y border-neutral-900">
+            <div class="max-w-7xl mx-auto px-4 mb-6 border-l-4 border-[#ef7e37] pl-4">
+                <h2 class="text-2xl md:text-3xl font-black tracking-wider text-white">TIMETABLE</h2>
+                <p class="text-xs text-neutral-400 mt-0.5">2026.7.4 (SAT) / 7.5 (SUN) ＠ SHIMOKITA COLLAGE</p>
+            </div>
+
+            <!-- 日程切り替えトグル -->
+            <div class="flex justify-center mb-5 px-4">
+                <div class="relative flex bg-neutral-800/80 border border-neutral-700 rounded-full p-1 w-[260px] select-none">
+                    <span id="tt-toggle-ind" class="absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] rounded-full bg-[#ef7e37] shadow-lg transition-transform duration-300 ease-out"></span>
+                    <button id="tt-btn-1" onclick="showDay('1')" class="relative z-10 flex-1 py-2 text-sm font-black rounded-full transition-colors text-black">7/4 <span class="text-[10px] font-bold">SAT</span></button>
+                    <button id="tt-btn-2" onclick="showDay('2')" class="relative z-10 flex-1 py-2 text-sm font-black rounded-full transition-colors text-neutral-400">7/5 <span class="text-[10px] font-bold">SUN</span></button>
+                </div>
+            </div>
+
+            <div class="max-w-md mx-auto px-3">
+                <div id="tt-grid" class="bg-neutral-950 rounded-xl border border-neutral-800 overflow-hidden shadow-2xl grid grid-cols-[54px_1fr]"></div>
+            </div>
+            <p class="text-[11px] text-neutral-500 max-w-md mx-auto px-3 mt-4 text-center">※ 各演奏は30分、間に10分の転換を挟みます。ブロックをタップすると詳細が表示されます。7/5 の15:40以降は出演者調整中です。</p>
+
+        </section>
+
+        <!-- ACCESS -->
+        <section id="access" class="py-12 max-w-3xl mx-auto px-4">
+            <div class="mb-6 border-l-4 border-[#ef7e37] pl-4">
+                <h2 class="text-2xl md:text-3xl font-black tracking-wider text-white">ACCESS</h2>
+                <p class="text-xs text-neutral-400 mt-0.5">会場・アクセス</p>
+            </div>
+            <div class="bg-neutral-950/60 border border-neutral-800 rounded-xl overflow-hidden">
+                <div class="p-5 md:p-7">
+                    <p class="text-lg md:text-xl font-black text-white">SHIMOKITA COLLEGE <span class="text-sm text-neutral-400 font-bold">（シモキタカレッジ）</span></p>
+                    <p class="text-sm text-neutral-300 mt-3 flex items-start">
+                        <i class="fa-solid fa-location-dot text-[#ef7e37] mr-2 mt-0.5"></i>
+                        <span>〒155-0033<br>東京都世田谷区代田５丁目２０−１６</span>
+                    </p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=SHIMOKITA+COLLEGE+%E6%9D%B1%E4%BA%AC%E9%83%BD%E4%B8%96%E7%94%B0%E8%B0%B7%E5%8C%BA%E4%BB%A3%E7%94%B05-20-16" target="_blank" rel="noopener" class="inline-flex items-center gap-2 mt-4 text-sm font-bold text-[#5ce1e6] hover:underline">
+                        <i class="fa-solid fa-map-location-dot"></i>Google Map で開く
+                    </a>
+                </div>
+                <iframe
+                    title="SHIMOKITA COLLEGE 地図"
+                    src="https://maps.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E4%B8%96%E7%94%B0%E8%B0%B7%E5%8C%BA%E4%BB%A3%E7%94%B05-20-16&z=16&output=embed"
+                    class="w-full h-64 md:h-72 border-0"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+
+        <footer class="border-t border-neutral-800 py-6 text-center text-[11px] text-neutral-600 mt-10">
+            <p>&copy; 2026 下北沢音楽祭2026 WEBポータル - Background provided by User</p>
+        </footer>
+
+    </main>
+
+    <!-- アーティスト詳細モーダル -->
+    <div id="artist-modal" class="fixed inset-0 z-[60] hidden items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeArtist()"></div>
+        <div class="relative w-full max-w-sm bg-neutral-950 border border-neutral-800 rounded-2xl overflow-hidden shadow-2xl">
+            <button onclick="closeArtist()" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-black/60 border border-neutral-700 text-white flex items-center justify-center hover:bg-[#ef7e37] hover:border-[#ef7e37] transition" aria-label="閉じる"><i class="fa-solid fa-xmark"></i></button>
+            <div class="relative w-full h-52 bg-neutral-800">
+                <img id="am-img" src="" alt="" class="w-full h-full object-cover hidden">
+                <div id="am-img-ph" class="absolute inset-0 flex flex-col items-center justify-center text-neutral-500">
+                    <i class="fa-regular fa-image text-3xl mb-2"></i>
+                    <span class="text-sm font-bold tracking-[0.3em]">調整中</span>
+                </div>
+            </div>
+            <div class="p-5">
+                <span id="am-tag" class="inline-block text-[10px] font-black tracking-widest bg-[#ef7e37] text-black px-2 py-0.5 rounded mb-2"></span>
+                <h3 id="am-name" class="text-xl font-black text-white leading-tight"></h3>
+                <p id="am-meta" class="text-xs text-[#5ce1e6] font-bold mt-1"></p>
+                <p id="am-bio" class="text-sm text-neutral-300 leading-relaxed mt-3"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ▼ 画像・プロフィールは仮データです。実データ（写真パス・紹介文）に差し替えてください。
+        const DAY_NAME = { '1': '7/4 (SAT)', '2': '7/5 (SUN)' };
+
+        const ARTISTS = {
+            'りこり。×清田英晴': { tag: 'OPENING ACT', bio: '7/4の開場を彩るオープニングアクト。りこり。と清田英晴によるスペシャルセッション。' },
+            '和太鼓クラブ':       { tag: '和太鼓',       bio: '迫力ある和太鼓の演奏でフェスの幕開けを盛り上げる（×りこり。）。' },
+            'パーマン×アレアレ':   { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            '國分健太':           { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            'むう':               { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            '清田郁広':           { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            'ちふみぃ':           { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            'しむ':               { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            'まりちゃん':         { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            'アサレン':           { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            'カレッジアーティスト': { tag: 'COLLEGE',    bio: '下北沢カレッジ在籍アーティストによるステージ。' },
+            'ジャズ×対話':         { tag: 'SPECIAL',    bio: 'カレッジ生＋事前予約生によるジャズセッションと対話の特別企画。' },
+            'うーがーず×りこり。': { tag: 'OPENING ACT', bio: '7/5の開場を彩るオープニングアクト。' },
+            'WAWAYA':             { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            'りこり。':           { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            'あやほ':             { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            'RYUICHI':            { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            'ARISA':              { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            'YU':                 { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            'すぐちま':           { bio: '下北沢音楽祭2026 出演アーティスト。' }
+        };
+
+        const SCHEDULE = {
+            '1': [
+                { t: '10:30', a: 'りこり。×清田英晴', oa: true },
+                { t: '11:00', a: '和太鼓クラブ', sub: '(×りこり。)' },
+                { t: '11:30', turn: true },
+                { t: '11:40', a: 'パーマン×アレアレ' },
+                { t: '12:10', turn: true },
+                { t: '12:20', a: '國分健太' },
+                { t: '12:50', turn: true },
+                { t: '13:00', a: 'むう' },
+                { t: '13:30', turn: true },
+                { t: '13:40', a: '清田郁広' },
+                { t: '14:10', turn: true },
+                { t: '14:20', a: 'ちふみぃ' },
+                { t: '14:50', turn: true },
+                { t: '15:00', a: 'しむ' },
+                { t: '15:30', turn: true },
+                { t: '15:40', a: 'まりちゃん' },
+                { t: '16:10', turn: true },
+                { t: '16:20', a: 'アサレン' },
+                { t: '16:50', turn: true },
+                { t: '17:00', a: 'カレッジアーティスト' },
+                { t: '17:30', turn: true },
+                { t: '17:40', a: 'カレッジアーティスト' },
+                { t: '18:10', turn: true },
+                { t: '18:20', a: 'カレッジアーティスト' },
+                { t: '18:50', note: '時間調整' },
+                { t: '19:00', note: '完全撤収' },
+                { t: '19:30', a: 'ジャズ×対話', special: true, sub: 'カレッジ生＋事前予約生' }
+            ],
+            '2': [
+                { t: '10:30', a: 'うーがーず×りこり。', oa: true },
+                { t: '11:00', a: 'WAWAYA' },
+                { t: '11:30', turn: true },
+                { t: '11:40', a: 'りこり。' },
+                { t: '12:10', turn: true },
+                { t: '12:20', a: 'あやほ' },
+                { t: '12:50', turn: true },
+                { t: '13:00', a: 'RYUICHI' },
+                { t: '13:30', turn: true },
+                { t: '13:40', a: 'ARISA' },
+                { t: '14:10', turn: true },
+                { t: '14:20', a: 'YU' },
+                { t: '14:50', turn: true },
+                { t: '15:00', a: 'すぐちま' },
+                { t: '15:30', turn: true },
+                { t: '15:40', tbd: true },
+                { t: '16:10', turn: true },
+                { t: '16:20', tbd: true },
+                { t: '16:50', turn: true },
+                { t: '17:00', tbd: true },
+                { t: '17:30', turn: true },
+                { t: '17:40', tbd: true },
+                { t: '18:10', turn: true },
+                { t: '18:20', tbd: true },
+                { t: '18:50', note: '時間調整' },
+                { t: '19:00', note: '完全撤収' }
+            ]
+        };
+
+        let currentDay = '1';
+
+        function el(tag, cls, html) {
+            const e = document.createElement(tag);
+            if (cls) e.className = cls;
+            if (html != null) e.innerHTML = html;
+            return e;
+        }
+
+        function renderDay(day) {
+            const grid = document.getElementById('tt-grid');
+            grid.innerHTML = '';
+            grid.appendChild(el('div', 'bg-neutral-900 border-b border-neutral-800 py-2.5 text-[10px] font-black text-neutral-500 flex items-center justify-center', '時間'));
+            grid.appendChild(el('div', 'bg-[#ef7e37] text-black border-b border-l border-neutral-800 py-2.5 text-xs font-black tracking-wider flex items-center justify-center', DAY_NAME[day] + ' のステージ'));
+
+            SCHEDULE[day].forEach(item => {
+                const muted = item.turn || item.note;
+                const timeCls = 'border-b border-neutral-800 bg-neutral-900/40 flex items-center justify-center ' +
+                    (muted ? 'py-1.5 text-[9px] font-bold text-neutral-500' : 'py-2 text-[10px] font-black text-[#5ce1e6]');
+                grid.appendChild(el('div', timeCls, item.t));
+
+                if (item.turn) {
+                    grid.appendChild(el('div', 'border-b border-l border-neutral-800 bg-neutral-950/60 py-1.5 text-[9px] text-neutral-700 tracking-[0.3em] flex items-center justify-center', '転換'));
+                } else if (item.note) {
+                    grid.appendChild(el('div', 'border-b border-l border-neutral-800 bg-neutral-950 py-2 text-[10px] font-bold text-neutral-500 tracking-widest flex items-center justify-center', item.note));
+                } else if (item.tbd) {
+                    const wrap = el('div', 'border-b border-l border-neutral-800 p-2');
+                    wrap.appendChild(el('div', 'h-full rounded-lg border border-dashed border-neutral-800 px-3 py-3 flex items-center justify-center', '<span class="text-[11px] text-neutral-600">調整中</span>'));
+                    grid.appendChild(wrap);
+                } else {
+                    const wrap = el('div', 'border-b border-l border-neutral-800 p-2');
+                    const highlight = item.oa || item.special;
+                    const card = el('div', 'flex items-center justify-between gap-2 rounded-lg border px-3 py-3 cursor-pointer transition-all active:scale-[0.98] ' +
+                        (highlight ? 'bg-[#ef7e37]/5 border-[#ef7e37]/30 hover:border-[#ef7e37]' : 'bg-neutral-900 border-neutral-800 hover:border-[#ef7e37]'));
+                    let inner = '<div class="text-left min-w-0">';
+                    if (item.oa) inner += '<span class="block text-[8px] font-black text-[#ffde59]">開場 OA</span>';
+                    inner += '<span class="block text-sm font-black text-white leading-tight">' + item.a + '</span>';
+                    if (item.sub) inner += '<span class="block text-[10px] text-neutral-400 mt-0.5">' + item.sub + '</span>';
+                    inner += '</div><i class="fa-solid fa-circle-info text-neutral-600 shrink-0"></i>';
+                    card.innerHTML = inner;
+                    card.addEventListener('click', () => openArtist(item.a, item.t, DAY_NAME[day]));
+                    wrap.appendChild(card);
+                    grid.appendChild(wrap);
+                }
+            });
+        }
+
+        function showDay(day) {
+            currentDay = day;
+            const ind = document.getElementById('tt-toggle-ind');
+            const b1 = document.getElementById('tt-btn-1');
+            const b2 = document.getElementById('tt-btn-2');
+            if (day === '1') {
+                ind.style.transform = 'translateX(0)';
+                b1.classList.add('text-black'); b1.classList.remove('text-neutral-400');
+                b2.classList.add('text-neutral-400'); b2.classList.remove('text-black');
+            } else {
+                ind.style.transform = 'translateX(100%)';
+                b2.classList.add('text-black'); b2.classList.remove('text-neutral-400');
+                b1.classList.add('text-neutral-400'); b1.classList.remove('text-black');
+            }
+            renderDay(day);
+        }
+
+        function openArtist(name, time, dayLabel) {
+            const a = ARTISTS[name] || {};
+            const img = document.getElementById('am-img');
+            const ph = document.getElementById('am-img-ph');
+            if (a.img) {
+                // 実画像が登録されている場合は写真を表示
+                img.src = a.img; img.alt = name;
+                img.classList.remove('hidden'); ph.classList.add('hidden');
+            } else {
+                // 未登録の場合は「調整中」を表示
+                img.removeAttribute('src'); img.classList.add('hidden');
+                ph.classList.remove('hidden');
+            }
+            const tag = document.getElementById('am-tag');
+            if (a.tag) { tag.textContent = a.tag; tag.style.display = 'inline-block'; }
+            else { tag.style.display = 'none'; }
+            document.getElementById('am-name').textContent = name;
+            document.getElementById('am-meta').textContent = dayLabel + ' ／ ' + time + '〜';
+            document.getElementById('am-bio').textContent = a.bio || 'プロフィール情報は準備中です。';
+            const m = document.getElementById('artist-modal');
+            m.classList.remove('hidden'); m.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeArtist() {
+            const m = document.getElementById('artist-modal');
+            m.classList.add('hidden'); m.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeArtist(); });
+
+        showDay('1');
+    </script>
+
+</body>
+</html>
