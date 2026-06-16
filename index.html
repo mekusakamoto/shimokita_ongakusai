@@ -145,7 +145,7 @@
         <div class="relative w-full max-w-sm bg-neutral-950 border border-neutral-800 rounded-2xl overflow-hidden shadow-2xl">
             <button onclick="closeArtist()" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-black/60 border border-neutral-700 text-white flex items-center justify-center hover:bg-[#ef7e37] hover:border-[#ef7e37] transition" aria-label="閉じる"><i class="fa-solid fa-xmark"></i></button>
             <div class="relative w-full h-52 bg-neutral-800">
-                <img id="am-img" src="" alt="" class="w-full h-full object-cover hidden">
+                <img id="am-img" src="" alt="" class="w-full h-full object-cover object-top hidden">
                 <div id="am-img-ph" class="absolute inset-0 flex flex-col items-center justify-center text-neutral-500">
                     <i class="fa-regular fa-image text-3xl mb-2"></i>
                     <span class="text-sm font-bold tracking-[0.3em]">調整中</span>
@@ -155,7 +155,8 @@
                 <span id="am-tag" class="inline-block text-[10px] font-black tracking-widest bg-[#ef7e37] text-black px-2 py-0.5 rounded mb-2"></span>
                 <h3 id="am-name" class="text-xl font-black text-white leading-tight"></h3>
                 <p id="am-meta" class="text-xs text-[#5ce1e6] font-bold mt-1"></p>
-                <p id="am-bio" class="text-sm text-neutral-300 leading-relaxed mt-3"></p>
+                <p id="am-bio" class="text-sm text-neutral-300 leading-relaxed mt-3 whitespace-pre-line"></p>
+                <div id="am-links" class="flex flex-wrap gap-2 mt-4"></div>
             </div>
         </div>
     </div>
@@ -165,28 +166,99 @@
         const DAY_NAME = { '1': '7/4 (SAT)', '2': '7/5 (SUN)' };
 
         const ARTISTS = {
-            '代田和太鼓クラブ':       { tag: '和太鼓',       bio: '迫力ある和太鼓の演奏でフェスの幕開けを盛り上げる（×りこり。）。' },
-            'parman':   { bio: '下北沢音楽祭2026 出演アーティスト。' },
-            'アレアレ':           { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            '代田和太鼓クラブ': {
+                img: 'image/代田和太鼓クラブ.jpeg',
+                tag: '和太鼓演奏',
+                bio: '代田小学校と山崎小学校の2〜6年生が在籍。和太鼓を演奏することで地域に元気を与え、日本の伝統文化への関心を高めることを目的に、毎週プロの和太鼓演奏者にご指導いただきながら練習、活動しています！',
+                hp: 'https://sites.google.com/view/daitawadaiko/'
+            },
+            'parman': {
+                img: 'image/parman.jpeg',
+                tag: 'ロック',
+                bio: '笑顔のヒーローparman(パーマン)です！皆んなに笑顔になって頂きたく全力でパフォーマンスします！宜しくお願い致します！',
+                sns: [{ l: 'X', u: 'https://x.com/tokyoparman' }]
+            },
+            'アレアレ': {
+                img: 'image/アレアレ.jpg',
+                tag: 'エレクトロ',
+                bio: '主な活動拠点は新宿や葛飾を中心にライブ活動をしております。\n音楽ライブをはじめ、音楽ライブにとどまらず様々なイベントに参加している、くれい爺とふぃ〜婆のアレアレというユニットです。\n主にふぃ〜婆が作詞をして、くれい爺が作詞したものの手直しやサウンドトラックメイクを担当しております。\n今の世の中がディストピア化しないように皆様に人と人との繋がりの温かさ、パッションを大事にする事の大切さを呼びかける事をコンセプトに活動しております。',
+                sns: [{ l: 'X', u: 'https://x.com/areare57825' }]
+            },
             '國分健太':               { bio: '下北沢音楽祭2026 出演アーティスト。' },
-            'むう':           { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            'むう': {
+                img: 'image/むう.png',
+                tag: '弾き語り',
+                bio: '神奈川県出身寄りそう歌を歌いたいシンガーソングライターむう。\n神奈川、東京を中心に活動中。\nライブやSNS、動画配信などをしており、\n4月30日には「桜散る頃、星になる。」を初リリースいたしました。\n私の曲があなたのそばに寄り添えるようなシンガーソングライターになりたいと思っています。ぜひ応援よろしくお願いします！',
+                hp: 'https://lit.link/mw0802'
+            },
             '清田郁広':           { bio: '下北沢音楽祭2026 出演アーティスト。' },
-            'ちふみぃ':            { bio: '下北沢音楽祭2026 出演アーティスト。' },
-            'しむ':               { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            'ちふみぃ': {
+                img: 'image/ちふみぃ.jpeg',
+                tag: 'アコースティック',
+                bio: 'めんどいこともきみとならとか。ねえそんなキモいこと思っちゃうくらいにはなったよ',
+                sns: [{ l: 'Instagram', u: 'https://www.instagram.com/chif_me1134/' }]
+            },
+            'しむ': {
+                img: 'image/しむ.jpeg',
+                tag: 'フォーク',
+                bio: 'しむは、日本のシンガーソングライター。「楽しむ」「悲しむ」「苦しむ」「愛しむ」など、人間の能動的な感情を表す単語についている”しむ”を気にいり、人の気持ちを歌う音楽家でありたいと考え命名。アコースティックギターでの弾き語りによるソロで、生演奏のSNS投稿を中心に活動している。',
+                hp: 'https://www.tunecore.co.jp/artists/shim960114',
+                sns: [{ l: 'TikTok', u: 'https://www.tiktok.com/@shim260114' }]
+            },
             'まりちゃん':         { bio: '下北沢音楽祭2026 出演アーティスト。' },
-            'アサレン':           { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            'アサレン': {
+                img: 'image/アサレン.jpeg',
+                tag: 'アイドル',
+                bio: '下北沢を拠点に活動中。 LIVE活動の他に、下北沢のまちの活動（ボランティアや、伝統のお祭りやイベント、子供の為のイベント企画＆運営）を行っております。また、Youtube情報番組「the下北沢reporter」ではメインMCを行っております。 2025年夏。警察署、防犯功労表彰式にて「北沢響察署長・北沢防犯協会会長連盟賞」を頂きました。',
+                hp: 'https://shimorepo.ninja.salon/',
+                sns: [{ l: 'X', u: 'https://twitter.com/asaren_official?s=21' }]
+            },
             'カレッジアーティスト': { tag: 'COLLEGE',    bio: '下北沢カレッジ在籍アーティストによるステージ。' },
             'ジャズ×対話（カレッジ生＋事前予約制）':         { tag: 'SPECIAL',    bio: 'カレッジ生＋事前予約生によるジャズセッションと対話の特別企画。' },
             'うーがーず×りこり。': { tag: 'OPENING ACT', bio: '7/5の開場を彩るオープニングアクト。' },
             '遊人（調整中）':       { bio: '下北沢音楽祭2026 出演アーティスト。' },
             '調整中':              { bio: '下北沢音楽祭2026 出演アーティスト。' },
-            'WAWAYA -和輪屋-':      { bio: '下北沢音楽祭2026 出演アーティスト。' },
-            'りこり。':           { bio: '下北沢音楽祭2026 出演アーティスト。' },
-            'あやほ🎤':             { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            'WAWAYA -和輪屋-': {
+                tag: '篠笛',
+                bio: '篠笛奏者「丘っ風おかっぷぅ〜」による和輪屋。',
+            },
+            'りこり。': {
+                img: 'image/りこり。.jpg',
+                tag: '和ロック／アコースティック',
+                bio: '三味線シンガーソングライター\n作詞作曲、三味線、弾き語り、短歌\n「魂に届く音楽を」「あなたの心の拠り所になりたい」を軸に生きる、\n独特な世界観を魅せる表現者。\n絶望の中で夢を歌うシンガーソングライター。\n16歳から作詞作曲をはじめ、19歳で三味線と出会い、\n三味線弾き語りの「しゃみ語り」スタイルが確立。\nkokoro noteという作品共作プロジェクトの代表。',
+                hp: 'https://linktr.ee/rikorin_music',
+                sns: [{ l: 'Instagram', u: 'https://www.instagram.com/rikorin_music' }]
+            },
+            'あやほ🎤': {
+                img: 'image/あやほ.jpeg',
+                tag: 'ポップス／バラード',
+                bio: 'キムチとスヌーピーが大好きなシンガーソングライターのあやほ🎤です。\n「日々の片隅にあなたの居場所となる音楽を」をコンセプトに活動しております。\n辛い時は、もちろんのこと、楽しい時も居場所になるような音楽を作りたいなと思いこのコンセプトにしました。\n2021年から音楽活動をスタートし、今年で5年目になります。\nこれまでに、主催ライブを2回、ワンマンライブを2回開催しました。\n今年4月には下北沢Daisy Barにてワンマンライブを開催し、当日は52名のお客様にご来場いただきました。\n私がお届けする音楽で、出会ってくださった方の人生に彩りを与えたいです！\nそしてハイエースに乗って全国ツアーをすることが目標。\nどうぞよろしくお願い致します！',
+                sns: [
+                    { l: 'X', u: 'https://x.com/ayaho_uta' },
+                    { l: 'Instagram', u: 'https://www.instagram.com/ayaho.uta' },
+                    { l: 'TikTok', u: 'https://www.tiktok.com/@yahoyahonouta' },
+                    { l: 'YouTube', u: 'https://www.youtube.com/@あやほ-y1s' },
+                    { l: 'Eggs', u: 'https://eggs.mu/user/ayaho_uta' }
+                ]
+            },
             'RYUICHI':            { bio: '下北沢音楽祭2026 出演アーティスト。' },
-            'JACK & DAIZ':              { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            'JACK & DAIZ': {
+                img: 'image/JACK & DAIZ.jpeg',
+                tag: 'ポップロック',
+                bio: '東京発3ピースポップロックバンド🫛\n全員が作詞作曲を務めます📕\n⭐️2026.10.03(土) 1st ONE-MAN決定！\n@下北沢mosaic Open 18:30 / Start 19:00\nチケットは各SNSのフォームまたはDMまで！',
+                hp: 'https://1link.jp/jack_and_daiz1005'
+            },
             '清田英晴':                 { bio: '下北沢音楽祭2026 出演アーティスト。' },
-            'すぐちま':           { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            'すぐちま': {
+                img: 'image/すぐちま.png',
+                tag: 'ポップ',
+                bio: '5年来の親友であるすぐる(リーダー)とかんちまによる音楽ユニット。\nYouTuberとしても活動するすぐると、ユニットの作詞作曲振り付けまで全てを手掛けるかんちま。\nステージでは本格的な音楽とライブパフォーマンスを届ける一方で、親友ならではの掛け合いや笑いも魅力。\n「かっこいい」「かわいい」「おもしろい」そのすべてを詰め込んだエンターテインメントに酔いしれてほしい。',
+                sns: [
+                    { l: 'X', u: 'https://x.com/suguchima' },
+                    { l: 'Instagram', u: 'https://www.instagram.com/suguchima' },
+                    { l: 'TikTok', u: 'https://www.tiktok.com/@suguchima' }
+                ]
+            },
             '和角一樹':            { bio: '下北沢音楽祭2026 出演アーティスト。' },
             '心ノ音 -kokoro note-':      { bio: '下北沢音楽祭2026 出演アーティスト。' },
             'ミュージックバー':            { bio: '下北沢音楽祭2026 出演アーティスト。' },
@@ -336,6 +408,29 @@
             document.getElementById('am-name').textContent = name;
             document.getElementById('am-meta').textContent = dayLabel + ' ／ ' + time + '〜';
             document.getElementById('am-bio').textContent = a.bio || 'プロフィール情報は準備中です。';
+
+            // HP・SNS リンクの描画
+            const links = document.getElementById('am-links');
+            links.innerHTML = '';
+            const snsIcon = (label) => {
+                const l = (label || '').toLowerCase();
+                if (l.includes('insta')) return 'fa-brands fa-instagram';
+                if (l.includes('tiktok')) return 'fa-brands fa-tiktok';
+                if (l.includes('youtube')) return 'fa-brands fa-youtube';
+                if (l.includes('eggs')) return 'fa-solid fa-music';
+                if (l === 'x' || l.includes('twitter')) return 'fa-brands fa-x-twitter';
+                return 'fa-solid fa-link';
+            };
+            const pill = (href, icon, text) =>
+                '<a href="' + href + '" target="_blank" rel="noopener" ' +
+                'class="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full ' +
+                'bg-neutral-900 border border-neutral-700 text-neutral-200 hover:border-[#ef7e37] hover:text-[#ef7e37] transition">' +
+                '<i class="' + icon + '"></i>' + text + '</a>';
+            let h = '';
+            if (a.hp) h += pill(a.hp, 'fa-solid fa-globe', 'HP');
+            if (a.sns) a.sns.forEach(s => { h += pill(s.u, snsIcon(s.l), s.l); });
+            links.innerHTML = h;
+
             const m = document.getElementById('artist-modal');
             m.classList.remove('hidden'); m.classList.add('flex');
             document.body.style.overflow = 'hidden';
