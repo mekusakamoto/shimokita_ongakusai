@@ -142,16 +142,16 @@
     <!-- アーティスト詳細モーダル -->
     <div id="artist-modal" class="fixed inset-0 z-[60] hidden items-center justify-center p-4">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeArtist()"></div>
-        <div class="relative w-full max-w-sm bg-neutral-950 border border-neutral-800 rounded-2xl overflow-hidden shadow-2xl">
+        <div class="relative w-full max-w-sm max-h-[90vh] flex flex-col bg-neutral-950 border border-neutral-800 rounded-2xl overflow-hidden shadow-2xl">
             <button onclick="closeArtist()" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-black/60 border border-neutral-700 text-white flex items-center justify-center hover:bg-[#ef7e37] hover:border-[#ef7e37] transition" aria-label="閉じる"><i class="fa-solid fa-xmark"></i></button>
-            <div class="relative w-full h-52 bg-neutral-800">
-                <img id="am-img" src="" alt="" class="w-full h-full object-cover object-top hidden">
+            <div class="relative w-full aspect-square bg-neutral-800 shrink-0">
+                <img id="am-img" src="" alt="" class="absolute inset-0 w-full h-full object-cover object-top hidden">
                 <div id="am-img-ph" class="absolute inset-0 flex flex-col items-center justify-center text-neutral-500">
                     <i class="fa-regular fa-image text-3xl mb-2"></i>
                     <span class="text-sm font-bold tracking-[0.3em]">調整中</span>
                 </div>
             </div>
-            <div class="p-5">
+            <div class="p-5 overflow-y-auto">
                 <span id="am-tag" class="inline-block text-[10px] font-black tracking-widest bg-[#ef7e37] text-black px-2 py-0.5 rounded mb-2"></span>
                 <h3 id="am-name" class="text-xl font-black text-white leading-tight"></h3>
                 <p id="am-meta" class="text-xs text-[#5ce1e6] font-bold mt-1"></p>
@@ -167,47 +167,63 @@
 
         const ARTISTS = {
             '代田和太鼓クラブ': {
-                img: 'image/代田和太鼓クラブ.jpeg',
+                img: 'image/代田和太鼓クラブ.webp',
                 tag: '和太鼓演奏',
                 bio: '代田小学校と山崎小学校の2〜6年生が在籍。和太鼓を演奏することで地域に元気を与え、日本の伝統文化への関心を高めることを目的に、毎週プロの和太鼓演奏者にご指導いただきながら練習、活動しています！',
                 hp: 'https://sites.google.com/view/daitawadaiko/'
             },
             'parman': {
-                img: 'image/parman.jpeg',
+                img: 'image/parman.webp',
                 tag: 'ロック',
                 bio: '笑顔のヒーローparman(パーマン)です！皆んなに笑顔になって頂きたく全力でパフォーマンスします！宜しくお願い致します！',
                 sns: [{ l: 'X', u: 'https://x.com/tokyoparman' }]
             },
             'アレアレ': {
-                img: 'image/アレアレ.jpg',
+                img: 'image/アレアレ.webp',
                 tag: 'エレクトロ',
                 bio: '主な活動拠点は新宿や葛飾を中心にライブ活動をしております。\n音楽ライブをはじめ、音楽ライブにとどまらず様々なイベントに参加している、くれい爺とふぃ〜婆のアレアレというユニットです。\n主にふぃ〜婆が作詞をして、くれい爺が作詞したものの手直しやサウンドトラックメイクを担当しております。\n今の世の中がディストピア化しないように皆様に人と人との繋がりの温かさ、パッションを大事にする事の大切さを呼びかける事をコンセプトに活動しております。',
                 sns: [{ l: 'X', u: 'https://x.com/areare57825' }]
             },
-            '國分健太':               { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            '國分健太': {
+                img: 'image/國分健太.webp',
+                tag: 'アコースティック',
+                bio: '路上ライブを中心に活動するシンガーソングライター。日々の想いや景色を等身大の言葉で描き、人との繋がりを歌う。現在はワンマンライブに向けて活動中。',
+                hp: 'https://1link.jp/kenta_kokubun0723',
+                sns: [{ l: 'Instagram', u: 'https://www.instagram.com/k.kenta.999' }]
+            },
             'むう': {
-                img: 'image/むう.png',
+                img: 'image/むう.webp',
                 tag: '弾き語り',
                 bio: '神奈川県出身寄りそう歌を歌いたいシンガーソングライターむう。\n神奈川、東京を中心に活動中。\nライブやSNS、動画配信などをしており、\n4月30日には「桜散る頃、星になる。」を初リリースいたしました。\n私の曲があなたのそばに寄り添えるようなシンガーソングライターになりたいと思っています。ぜひ応援よろしくお願いします！',
                 hp: 'https://lit.link/mw0802'
             },
-            '清田郁広':           { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            '清田郁広': {
+                img: 'image/清田郁広.webp',
+                tag: 'ポップ／アコースティック',
+                bio: 'シンガーソングライター「清田郁広(きよたふみひろ)」です！\n疲れきった毎日に、「心と耳に馴染むメロディ」をあなたへお届けします。',
+                hp: 'https://lit.link/fumihiro_kiyota'
+            },
             'ちふみぃ': {
-                img: 'image/ちふみぃ.jpeg',
+                img: 'image/ちふみぃ.webp',
                 tag: 'アコースティック',
                 bio: 'めんどいこともきみとならとか。ねえそんなキモいこと思っちゃうくらいにはなったよ',
                 sns: [{ l: 'Instagram', u: 'https://www.instagram.com/chif_me1134/' }]
             },
             'しむ': {
-                img: 'image/しむ.jpeg',
+                img: 'image/しむ.webp',
                 tag: 'フォーク',
                 bio: 'しむは、日本のシンガーソングライター。「楽しむ」「悲しむ」「苦しむ」「愛しむ」など、人間の能動的な感情を表す単語についている”しむ”を気にいり、人の気持ちを歌う音楽家でありたいと考え命名。アコースティックギターでの弾き語りによるソロで、生演奏のSNS投稿を中心に活動している。',
                 hp: 'https://www.tunecore.co.jp/artists/shim960114',
                 sns: [{ l: 'TikTok', u: 'https://www.tiktok.com/@shim260114' }]
             },
-            'まりちゃん':         { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            'まりちゃん': {
+                img: 'image/まりちゃん.webp',
+                tag: 'アイドルシンガー',
+                bio: '関東・東海で活動しているアイドルシンガーまりちゃんです♪\n湘南ゴールドエナジー公式アンバサダー\n土肥金山公式アンバサダー\nを務めながら、謎解きアイドルとしても活動しています！\n君に笑顔とハッピーをお届けします♡\n応援よろしくお願いします♪',
+                hp: 'https://marichan-mj.crayonsite.com/'
+            },
             'アサレン': {
-                img: 'image/アサレン.jpeg',
+                img: 'image/アサレン.webp',
                 tag: 'アイドル',
                 bio: '下北沢を拠点に活動中。 LIVE活動の他に、下北沢のまちの活動（ボランティアや、伝統のお祭りやイベント、子供の為のイベント企画＆運営）を行っております。また、Youtube情報番組「the下北沢reporter」ではメインMCを行っております。 2025年夏。警察署、防犯功労表彰式にて「北沢響察署長・北沢防犯協会会長連盟賞」を頂きました。',
                 hp: 'https://shimorepo.ninja.salon/',
@@ -216,21 +232,34 @@
             'カレッジアーティスト': { tag: 'COLLEGE',    bio: '下北沢カレッジ在籍アーティストによるステージ。' },
             'ジャズ×対話（カレッジ生＋事前予約制）':         { tag: 'SPECIAL',    bio: 'カレッジ生＋事前予約生によるジャズセッションと対話の特別企画。' },
             'うーがーず×りこり。': { tag: 'OPENING ACT', bio: '7/5の開場を彩るオープニングアクト。' },
-            '遊人（調整中）':       { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            '遊人': {
+                img: 'image/遊人.webp',
+                tag: 'フォーク',
+                bio: '元トップ営業マン💼→ 退職金で車を購入し、日本一周ストリートライヴ旅へ🚗 2年を経て帰還。自身の不登校経験や旅の体験を活かし、全国の学校で講演＆ライブを開催📢 「みんなのために闘うアーティスト」シンガーソングファイターとして、全国にエールを届ける！🎤\n#ミシガンパーサー としても活躍中🚢',
+                sns: [{ l: 'Instagram', u: 'https://www.instagram.com/4410aho' }]
+            },
             '調整中':              { bio: '下北沢音楽祭2026 出演アーティスト。' },
             'WAWAYA -和輪屋-': {
-                tag: '篠笛',
-                bio: '篠笛奏者「丘っ風おかっぷぅ〜」による和輪屋。',
+                img: 'image/WAWAYA – 和輪屋 –.webp',
+                tag: '和楽器×書道×音楽',
+                bio: 'WAWAYA – 和輪屋 –\n音と文字で表現するアートユニット\n（和楽器 × 書道 × 音楽）\n\nあやほ｜歌・キーボード・作詞作曲\nりこり。｜歌・三味線・ギター・作詞作曲\n華月椎｜書道パフォーマンス・カホン・短歌\n丘っ風｜篠笛・舞\nありす。｜ギター・歌\n\n音楽、書道、舞など、それぞれ異なる表現を持つ5人が集い、人と人をつなぐ作品と空間を創り出している。\n\nAn art unit expressing Japan through sound & calligraphy.',
+                hp: 'https://linktr.ee/wawaya_japan',
+                sns: [{ l: 'TikTok', u: 'https://www.tiktok.com/@wawaya_japan' }]
             },
             'りこり。': {
-                img: 'image/りこり。.jpg',
+                img: 'image/りこり。.webp',
                 tag: '和ロック／アコースティック',
                 bio: '三味線シンガーソングライター\n作詞作曲、三味線、弾き語り、短歌\n「魂に届く音楽を」「あなたの心の拠り所になりたい」を軸に生きる、\n独特な世界観を魅せる表現者。\n絶望の中で夢を歌うシンガーソングライター。\n16歳から作詞作曲をはじめ、19歳で三味線と出会い、\n三味線弾き語りの「しゃみ語り」スタイルが確立。\nkokoro noteという作品共作プロジェクトの代表。',
                 hp: 'https://linktr.ee/rikorin_music',
-                sns: [{ l: 'Instagram', u: 'https://www.instagram.com/rikorin_music' }]
+                sns: [
+                    { l: 'Instagram', u: 'https://www.instagram.com/rikorin_music' },
+                    { l: 'TikTok', u: 'https://www.tiktok.com/@rikorin_music' },
+                    { l: 'YouTube', u: 'https://www.youtube.com/channel/UCq5RtF9hAeX9M2HDe_EzzhA' },
+                    { l: 'X', u: 'https://x.com/rikorin_music' }
+                ]
             },
             'あやほ🎤': {
-                img: 'image/あやほ.jpeg',
+                img: 'image/あやほ.webp',
                 tag: 'ポップス／バラード',
                 bio: 'キムチとスヌーピーが大好きなシンガーソングライターのあやほ🎤です。\n「日々の片隅にあなたの居場所となる音楽を」をコンセプトに活動しております。\n辛い時は、もちろんのこと、楽しい時も居場所になるような音楽を作りたいなと思いこのコンセプトにしました。\n2021年から音楽活動をスタートし、今年で5年目になります。\nこれまでに、主催ライブを2回、ワンマンライブを2回開催しました。\n今年4月には下北沢Daisy Barにてワンマンライブを開催し、当日は52名のお客様にご来場いただきました。\n私がお届けする音楽で、出会ってくださった方の人生に彩りを与えたいです！\nそしてハイエースに乗って全国ツアーをすることが目標。\nどうぞよろしくお願い致します！',
                 sns: [
@@ -243,14 +272,23 @@
             },
             'RYUICHI':            { bio: '下北沢音楽祭2026 出演アーティスト。' },
             'JACK & DAIZ': {
-                img: 'image/JACK & DAIZ.jpeg',
+                img: 'image/JACK & DAIZ.webp',
                 tag: 'ポップロック',
                 bio: '東京発3ピースポップロックバンド🫛\n全員が作詞作曲を務めます📕\n⭐️2026.10.03(土) 1st ONE-MAN決定！\n@下北沢mosaic Open 18:30 / Start 19:00\nチケットは各SNSのフォームまたはDMまで！',
                 hp: 'https://1link.jp/jack_and_daiz1005'
             },
-            '清田英晴':                 { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            '清田英晴': {
+                img: 'image/清田英晴.webp',
+                tag: 'カスタネット弾き語り',
+                bio: '若かりし頃より国民的英雄になる事を目標に様々な芸事に手を出し、現在は唯一無二のカスタネット奏者としての活動を幹とする。\n希少なカスタネット技術に、演劇仕込みの表現力を活かしたカスタネット弾き語りも行っている。\n16年余りカスタネットを叩き続けてついたキャッチフレーズは『目が石原さとみと言われる男性』。\n何故なのか？',
+                sns: [
+                    { l: 'Instagram', u: 'https://www.instagram.com/kiyota_hd' },
+                    { l: 'TikTok', u: 'https://www.tiktok.com/@cressnich_ttk' },
+                    { l: 'ブログ', u: 'https://ameblo.jp/cressnich-kyt/' }
+                ]
+            },
             'すぐちま': {
-                img: 'image/すぐちま.png',
+                img: 'image/すぐちま.webp',
                 tag: 'ポップ',
                 bio: '5年来の親友であるすぐる(リーダー)とかんちまによる音楽ユニット。\nYouTuberとしても活動するすぐると、ユニットの作詞作曲振り付けまで全てを手掛けるかんちま。\nステージでは本格的な音楽とライブパフォーマンスを届ける一方で、親友ならではの掛け合いや笑いも魅力。\n「かっこいい」「かわいい」「おもしろい」そのすべてを詰め込んだエンターテインメントに酔いしれてほしい。',
                 sns: [
@@ -259,8 +297,23 @@
                     { l: 'TikTok', u: 'https://www.tiktok.com/@suguchima' }
                 ]
             },
-            '和角一樹':            { bio: '下北沢音楽祭2026 出演アーティスト。' },
-            '心ノ音 -kokoro note-':      { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            '和角一樹': {
+                img: 'image/和角一樹.webp',
+                tag: 'アコースティック',
+                bio: 'シンガーソングライター\n諦めの悪い男、和角一樹\n『そっと人に寄り添う歌』\n月のような存在を目指して生きてきたが\nそのくらいの想いでは届かないことに気づき\n『心を鷲掴みにする歌』を歌うために\n生きています\n宜しくお願い致します',
+                hp: 'https://lit.link/wazmikazuki'
+            },
+            '心ノ音 -kokoro note-': {
+                img: 'image/心ノ音　-kokoro note-.webp',
+                tag: 'オールジャンル',
+                bio: '「語り繋がり作って広げ、心の音を作品に」をコンセプトに活動する共作プロジェクト。自身のライフストーリーやエピソードを形にしたい人（Giver）と、他者の経験をもとに創作したい人（Maker）を繋ぎ、作品を共作し社会へ発信するプラットフォーム。日常の悩みから社会問題まで、一人ひとりの物語を対話から音楽・映像・演劇・絵画・ダンスなど多様な形で表現する。芸術を通して、個人のエピソードから社会問題への理解や関心を深めるきっかけづくりを目指して活動している。',
+                hp: 'https://kokoronote.wixsite.com/website',
+                sns: [
+                    { l: 'Instagram', u: 'https://www.instagram.com/kokoro556note/' },
+                    { l: 'YouTube', u: 'https://www.youtube.com/channel/UCIVKnND3GJKi2RNN_tmFHHQ' },
+                    { l: 'X', u: 'https://x.com/kokoro556note' }
+                ]
+            },
             'ミュージックバー':            { bio: '下北沢音楽祭2026 出演アーティスト。' },
         };
 
@@ -296,7 +349,7 @@
             ],
             '2': [
                 { t: '10:30', a: 'うーがーず×りこり。', oa: true },
-                { t: '11:00', a: '遊人（調整中）' },
+                { t: '11:00', a: '遊人' },
                 { t: '11:30', turn: true },
                 { t: '11:40', a: '調整中' },
                 { t: '12:10', turn: true },
