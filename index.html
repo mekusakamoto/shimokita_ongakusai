@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>下北沢音楽祭2026</title>
+    <title>下北沢音楽祭2026 - SHIMOKITA CROSSROAD STAGE -</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -230,7 +230,8 @@
                 sns: [{ l: 'X', u: 'https://twitter.com/asaren_official?s=21' }]
             },
             'カレッジアーティスト': { tag: 'COLLEGE',    bio: '下北沢カレッジ在籍アーティストによるステージ。' },
-            'ジャズ×対話（カレッジ生＋事前予約制）':         { tag: 'SPECIAL',    bio: 'カレッジ生＋事前予約生によるジャズセッションと対話の特別企画。' },
+            'ジャズ×対話（カレッジ生＋事前予約制）':         { tag: 'SPECIAL',    bio: 'ジャズ好きからジャズの楽しみ方を紹介後、音源や住民のミニ演奏を聞いて感じたことを対話します。ジャズに詳しい方も聞いたことない方もお気軽にご参加ください。\n' +
+                    '事前予約制で申込は[こちら](https://forms.gle/Wak3gohK9JkMUhMd8)' },
             '清田英晴×りこり。': { tag: 'OPENING ACT', bio: 'カスタネット奏者「清田英晴」と三味線シンガーソングライター「りこり。」によるスペシャルコラボ。7/4の開場を彩るオープニングアクト。' },
             'うーがーず×りこり。': { tag: 'OPENING ACT', bio: '7/5の開場を彩るオープニングアクト。' },
             '遊人': {
@@ -239,7 +240,14 @@
                 bio: '元トップ営業マン💼→ 退職金で車を購入し、日本一周ストリートライヴ旅へ🚗 2年を経て帰還。自身の不登校経験や旅の体験を活かし、全国の学校で講演＆ライブを開催📢 「みんなのために闘うアーティスト」シンガーソングファイターとして、全国にエールを届ける！🎤\n#ミシガンパーサー としても活躍中🚢',
                 sns: [{ l: 'Instagram', u: 'https://www.instagram.com/4410aho' }]
             },
-            '調整中':              { bio: '下北沢音楽祭2026 出演アーティスト。' },
+            '在家俊輔': {
+                img: 'image/在家俊輔.webp',
+                tag: 'アコースティック',
+                bio: '都内のライブハウスを中心に活動中。\n' +
+                    '優しい低音の歌声が武器。\n' +
+                    '実体験を元にした歌詞や独特なMCで在家ワールドに引き込みます。',
+                sns: [{ l: 'X', u: 'https://x.com/zaike_singer?s=11&t=KqLqTsA6Hj0jkXNfyzZiAw' }]
+            },
             'WAWAYA -和輪屋-': {
                 img: 'image/WAWAYA – 和輪屋 –.webp',
                 tag: '和楽器×書道×音楽',
@@ -315,7 +323,10 @@
                     { l: 'X', u: 'https://x.com/kokoro556note' }
                 ]
             },
-            'ミュージックバー':            { img: 'image/ミュージックバー.webp', bio: '下北沢音楽祭2026 出演アーティスト。' },
+            'ミュージックバー':            { img: 'image/ミュージックバー.webp', bio: '「ライブ後の余韻を、そのまま音楽に。」\n' +
+                    'ライブが終わっても、まだ帰りたくない。そんな音楽好きのための”ライブ後の居場所”をコンセプトにした参加型ミュージックバー。\n' +
+                    '1オーダーごとに、好きな曲をリクエストするか、ステージで1曲演奏することができます。各種サブスクやYouTubeだけでなく、オリジナル音源やデモ音源にも対応。アーティストは自身の楽曲を紹介し、来場者は思い出の一曲を楽しむなど、それぞれのスタイルで音楽を共有できます。\n' +
+                    '店内にはアコースティックギターやキーボードなどを常設。「この曲弾ける人いますか？」をきっかけに、その場で出会った人同士のセッションが生まれることも。出演者もお客さんも立場を越えて交流し、音楽祭の最後まで音楽を楽しめる空間を目指します。' },
         };
 
         const SCHEDULE = {
@@ -350,7 +361,7 @@
             ],
             '2': [
                 { t: '10:30', a: 'うーがーず×りこり。', oa: true },
-                { t: '11:00', a: '調整中' },
+                { t: '11:00', a: '在家俊輔' },
                 { t: '11:30', turn: true },
                 { t: '11:40', a: '遊人' },
                 { t: '12:10', turn: true },
@@ -460,7 +471,12 @@
             else { tag.style.display = 'none'; }
             document.getElementById('am-name').textContent = name;
             document.getElementById('am-meta').textContent = dayLabel + ' ／ ' + time + '〜';
-            document.getElementById('am-bio').textContent = a.bio || 'プロフィール情報は準備中です。';
+            const escapeHtml = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+            const renderBio = (s) => escapeHtml(s)
+                .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+                    '<a href="$2" target="_blank" rel="noopener" class="text-[#5ce1e6] font-bold hover:underline">$1</a>')
+                .replace(/\n/g, '<br>');
+            document.getElementById('am-bio').innerHTML = renderBio(a.bio || 'プロフィール情報は準備中です。');
 
             // HP・SNS リンクの描画
             const links = document.getElementById('am-links');
